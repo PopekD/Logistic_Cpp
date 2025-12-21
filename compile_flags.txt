@@ -1,0 +1,5 @@
+-xc++
+-std=c++23
+-Wall
+-I/usr/include/python3.13
+-I/usr/lib/python3.13/site-packages/pybind11/include
