@@ -10,6 +10,8 @@
 // template <typename T>
 void LogisticRegression::fit(const std::vector<std::vector<float>> &x,
                              const std::vector<bool> &y) {
+  if (saveLoss)
+    lossVect.clear();
 
   if (algorithm == "lbfgs") {
     LBFGS(y, x);
@@ -71,6 +73,9 @@ void LogisticRegression::LBFGS(const std::vector<bool> &y,
 
     if (i == 0)
       ComputeLossAndGradient(y, x, &gradient, &current_loss, weights);
+
+    if (saveLoss)
+      lossVect.push_back(current_loss);
 
     if (std::abs(prev_loss - current_loss) < tolerance) {
       // std::cout << "Converged at iteration" << i << std::endl;
@@ -264,6 +269,8 @@ void LogisticRegression::GradientDescent(
   for (auto i{0uz}; i < max_iter; ++i) {
 
     ComputeLossAndGradient(y, x, &gradient, &current_loss, weights);
+    if (saveLoss)
+      lossVect.push_back(current_loss);
 
     if (std::abs(prev_loss - current_loss) < tolerance) {
       // std::cout << "Converged at iteration" << i << std::endl;
