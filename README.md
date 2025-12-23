@@ -1,2 +1,2 @@
 # Logistic_Cpp
-Python module of C++ Logistic Regression implementation with L-BFGS and Gradient Descent optimization algorithms.
+C++ implementation of Logistic Regression with Python bindings, featuring L-BFGS and Gradient Descent solvers.
